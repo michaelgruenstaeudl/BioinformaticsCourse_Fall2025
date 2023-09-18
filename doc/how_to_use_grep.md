@@ -42,3 +42,29 @@ grep 'line\|end' file1.txt  # print all lines with either keyword
 grep "^This" file1.txt    # print all lines that start 
                           # with keyword 'This' (case-sensitive)
 ```
+
+#### Using grep with options -A or -B
+```
+grep -A1 "second" file1.txt   # print all lines with keyword 'second' and 
+                              # any line immediately following it
+
+grep -B2 "fourth" file1.txt  # print all lines with keyword 'fourth' and 
+                             # the two lines immediately before it
+```
+
+#### Using grep with regular expressions
+```
+grep "This .* line" file1.txt  # print all lines that start 
+                               # with 'This' and end with 'line'
+
+grep "This is the ..... line" file1.txt  # print all lines that 
+                                         # start with 'This is the',
+                                         # end with 'line', and has
+                                         # exactly five characters
+                                         # in between.
+
+grep -o "f...t" file1.txt  # from all lines, print only the 5-character
+                           # word that starts with 'f' and ends with 't'
+                           
+grep -o ".* line\.$" file1.txt  # print all lines that end with 'line.'
+```
