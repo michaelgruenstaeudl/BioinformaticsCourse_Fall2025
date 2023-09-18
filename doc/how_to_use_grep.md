@@ -28,7 +28,7 @@ grep --color "line" file1.txt    # print all lines with keyword 'line'
                                  # while highlighting the keyword
 ```
 
-#### Using grep on test file
+#### Using grep with different options - part 1
 ```
 grep -v "line" file1.txt    # print all lines without keyword 'line'
 
@@ -43,7 +43,7 @@ grep "^This" file1.txt    # print all lines that start
                           # with keyword 'This' (case-sensitive)
 ```
 
-#### Using grep with options -A or -B
+#### Using grep with different options - part 2
 ```
 grep -A1 "second" file1.txt   # print all lines with keyword 'second' and 
                               # any line immediately following it
