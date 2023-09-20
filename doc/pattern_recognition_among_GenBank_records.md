@@ -18,3 +18,21 @@ LR992043.1 OX648098.1 OU801385.1 OX446419.1 MZ579386.1 OK546254.1;
 done
 ```
 
+### Using grep to extract relevant information from local GenBank records
+```
+# Grep can be executed on multiple files simultaneously
+
+grep "Sequencing Technology" *.gbk   # print all lines with the key phrase
+                                     # "Sequencing Technology" across all 
+                                     # input files
+
+grep "ACCESSION" *.gbk | wc -l  # count the number of correctly formatted 
+                                # GenBank files you are working with
+
+
+# Illustrating that not all of these SARS-CoV-2 genomes have the same 
+# nucleotide sequence in the first 60 nucleotides
+
+grep -h -A1 --no-group-separator "^ORIGIN" *.gbk | grep -v "ORIGIN"
+
+```
