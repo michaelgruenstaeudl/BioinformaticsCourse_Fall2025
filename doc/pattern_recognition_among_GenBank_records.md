@@ -1,13 +1,13 @@
 ### Pattern recognition among local GenBank records using grep
 
-### Downloading a single genome record from GenBank using the Bash shell
+#### Downloading a single genome record from GenBank using the Bash shell
 ```
 # Download the full reference genome of SARS-CoV-2 from GenBank
 
 i=NC_045512.2
 curl -s  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id=${i}&rettype=gb&retmode=txt">$i.gbk
 ```
-### Downloading various additional genome records from GenBank using Bash shell
+#### Downloading various additional genome records from GenBank using Bash shell
 ```
 # Downloading the genome records of several additional SARS-CoV-2 amples from GenBank:
 
@@ -18,7 +18,7 @@ LR992043.1 OX648098.1 OU801385.1 OX446419.1 MZ579386.1 OK546254.1;
 done
 ```
 
-### Using grep to extract relevant information from local GenBank records
+#### Using grep to extract relevant information from local GenBank records
 ```
 # Grep can be executed on multiple files simultaneously
 
