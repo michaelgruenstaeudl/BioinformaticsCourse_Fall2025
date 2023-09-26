@@ -30,3 +30,19 @@ $ cat file1
 hello
 world
 ```
+#### Passing output to another command (piping) via '|'
+```
+$ echo 'world hello' | tr h H
+world Hello
+
+$ echo 'world hello' | tr h H | tr ' ' '\n'
+world
+Hello
+
+$ echo 'world hello' | tr h H | tr ' ' '\n' | tac
+Hello
+world
+
+$ echo 'world hello' | tr h H | tr ' ' '\n' | tac | tr '\n' ' '
+Hello world
+```
