@@ -46,3 +46,21 @@ world
 $ echo 'world hello' | tr h H | tr ' ' '\n' | tac | tr '\n' ' '
 Hello world
 ```
+
+#### Forking processes to background
+
+```
+# Forking processes and running in background via '&'
+
+$ (sleep 2 ; echo 'Hello World!') &
+[1] 7772
+$ Hello World!
+[1]+  Done                    ( sleep 2; echo 'Hello World!' )
+
+# After a process is forked using a single trailing ampersand, its process ID is stored in variable $!
+
+$ (sleep 2 ; echo 'Hello World!') &
+[1] 7772
+$ echo $!
+7772
+```
