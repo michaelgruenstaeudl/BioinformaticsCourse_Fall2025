@@ -21,7 +21,8 @@ esearch -db nucleotide -query "$MYQUERY" | \
 ```
 # Defining a search query that also uses PROP (i.e., properties) 
 # and FKEY (i.e., feature keys):
-# This query would search for any complete bacterial genome 
+
+# Note: The query searches for any complete bacterial genome 
 # published in 2023 that has a replication origin specified
 MYQUERY="gbdiv_bct[PROP] \
          AND complete genome[TITLE] \
@@ -30,4 +31,28 @@ MYQUERY="gbdiv_bct[PROP] \
 
 # Summarizing the results via esummary:
 esearch -db nucleotide -query "$MYQUERY" | esummary
+```
+
+#### Simplifying a complex search via efilter
+```
+# efilter allows the user to apply simpler, more general
+# search queries and filter specific results after the initial esearch
+
+# Note: The query searches for any complete bacterial genome 
+# published in 2023 that has a replication origin specified
+
+# WITHOUT efilter:
+MYQUERY="gbdiv_bct[PROP] \
+         AND complete genome[TITLE] \
+         AND 2023/01/01:2023/12/31[PDAT]\
+         AND rep_origin[FKEY]"
+esearch -db nucleotide -query "$MYQUERY"
+
+# WITH efilter (assuming a search on 01-Jan-2024):
+MYQUERY="
+         AND complete genome[TITLE] \
+         
+         AND rep_origin[FKEY]"
+esearch -db nucleotide -query "$MYQUERY" | \
+    efilter -division bct -days 365
 ```
