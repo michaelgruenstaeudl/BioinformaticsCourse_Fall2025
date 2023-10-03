@@ -71,4 +71,8 @@ MYQUERY="gbdiv_bct[PROP] \
          AND rep_origin[FKEY]"
 esearch -db nucleotide -query "$MYQUERY" | \
     efetch -format uid > uid_numbers.list
+
+# Reusing the accession numbers found in the earlier esearch
+cat uid_numbers.list | epost -db nucleotide | \
+    esummary | xtract -pattern DocumentSummary -element Title
 ```
