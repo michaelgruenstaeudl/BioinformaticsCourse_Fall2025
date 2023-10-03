@@ -56,3 +56,19 @@ MYQUERY="
 esearch -db nucleotide -query "$MYQUERY" | \
     efilter -division bct -days 365
 ```
+
+#### Extracting and reusing GenBank queries via unique identifiers
+```
+# Conducting a search on GenBank via esearch and saving the 
+# the results list via the records' unique identifiers (uids)
+
+# Note: the uid number is different from the accession number of 
+#       a GenBank record
+
+MYQUERY="gbdiv_bct[PROP] \
+         AND complete genome[TITLE] \
+         AND 2022/01/01:2023/12/31[PDAT]\
+         AND rep_origin[FKEY]"
+esearch -db nucleotide -query "$MYQUERY" | \
+    efetch -format uid > uid_numbers.list
+```
