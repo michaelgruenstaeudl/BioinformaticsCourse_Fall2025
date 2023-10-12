@@ -76,3 +76,21 @@ esearch -db nucleotide -query "$MYQUERY" | \
 cat uid_numbers.list | epost -db nucleotide | \
     esummary | xtract -pattern DocumentSummary -element Title
 ```
+
+#### EXAMPLE: Inferring sequence lengths across multiple genomes
+```
+# Solution 1: Extracting length information from XML output
+cat uid_numbers.list | epost -db nucleotide | \
+    esummary -stop 1
+
+cat uid_numbers.list | epost -db nucleotide | \
+    esummary | xtract -pattern DocumentSummary -element Slen
+
+# Solution 2: Extracting DNA sequence, followed by counting characters
+cat uid_numbers.list | epost -db nucleotide | \
+    efetch -format fasta > bact_dump.txt
+csplit -f bact_genome_ -n 2 -z bact_dump.txt /^\>/ '{*}' > num_of_lines.txt
+for i in bact_genome_*; do
+    cat $i | sed 1d | tr -d '\n' | wc -c;
+done
+```
