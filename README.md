@@ -9,4 +9,4 @@ Some coding exercises of the bioinformatics course I am teaching in fall 2023
 3. [Pattern recognition among local GenBank records](https://github.com/michaelgruenstaeudl/Bioinformatics_course__Fall2023/blob/main/doc/03_pattern_recognition_among_GenBank_records.md)
 4. [Data mining of GenBank using edirect tools](https://github.com/michaelgruenstaeudl/Bioinformatics_course__Fall2023/blob/main/doc/04_GenBank_data_mining_with_edirect.md)
 5. [Cross-referencing different NCBI databases](https://github.com/michaelgruenstaeudl/Bioinformatics_course__Fall2023/blob/main/doc/05_Crossreferencing_different_NCBI_databases.md)
-
+6. [Using BLAST locally](https://github.com/michaelgruenstaeudl/Bioinformatics_course__Fall2023/blob/main/doc/06_Using_BLAST_locally.md)
