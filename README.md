@@ -11,4 +11,5 @@ Some coding exercises of the bioinformatics course I am teaching in fall 2023
 5. [Cross-referencing different NCBI databases](https://github.com/michaelgruenstaeudl/Bioinformatics_course__Fall2023/blob/main/doc/05_Crossreferencing_different_NCBI_databases.md)
 6. [Using BLAST locally](https://github.com/michaelgruenstaeudl/Bioinformatics_course__Fall2023/blob/main/doc/06_Using_BLAST_locally.md)
 7. [Assemblying human mitochondrial genomes](https://github.com/michaelgruenstaeudl/Bioinformatics_course__Fall2023/blob/main/doc/07_Mitochondrial_genome_assembly.md)
-8. [Analyzing gene expression in humans](https://github.com/michaelgruenstaeudl/Bioinformatics_course__Fall2023/blob/main/doc/08_RNA_seq_analysis.md)
+8. [Assemblying plant plastid genomes](https://github.com/michaelgruenstaeudl/Bioinformatics_course__Fall2023/blob/main/doc/08_Plastid_genome_assembly.md)
+9. [Analyzing gene expression in humans](https://github.com/michaelgruenstaeudl/Bioinformatics_course__Fall2023/blob/main/doc/09_RNA_seq_analysis.md)
