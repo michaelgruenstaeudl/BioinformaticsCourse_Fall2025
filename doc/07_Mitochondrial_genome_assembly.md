@@ -2,7 +2,11 @@
 
 #### Step 1: Retrieving sequence reads of genome skimming or hybrid capture experiment on human genome
 ```
-# Example: Biosample SAMN08193509
+# Example: Biosample SAMN08193509 - SRA number SRR6664769
+# Note: You can check if the sequence reads match your aims by evaluating the title of the SRR-file
+esearch -db sra -query "SRR6664769" | esummary | xtract -pattern DocumentSummary -element Title
+
+# Downloading raw sequence reads
 wget -c https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos5/sra-pub-zq-14/SRR006/664/SRR6664769.sralite.1
 
 # Splitting raw reads file into R1 and, if present, R2 reads using FASTQ-DUMP
