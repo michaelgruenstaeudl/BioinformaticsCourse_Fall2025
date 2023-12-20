@@ -1,5 +1,5 @@
 # Bioinformatics course in fall 2023
-Some coding exercises of the bioinformatics course I am teaching in fall 2023
+Some coding exercises of the bioinformatics course taught in fall 2023
 
 ---
 
