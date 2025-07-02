@@ -1,5 +1,5 @@
-# Bioinformatics course in fall 2024
-This is a preliminary set of coding exercises from the bioinformatics course taught in Fall 2024. 
+# Bioinformatics course
+This is a preliminary set of coding exercises from the bioinformatics course taught in Fall 2023 and revised in Fall 2024. 
 
 __These materials are being reviewed and adapted for inclusion in an upcoming online version of the course.__
 
