@@ -4,10 +4,10 @@ Collection of coding exercises from my bioinformatics course taught in fall seme
 ---
 
 ## Chapters
-01a. [Installing WSL on Windows](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/01a_Installing_WSL.md)
-01b. [Installing packages](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/01b_Installing_packages.md)
-02. [Introduction to Unix commands](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/02_Unix_system_commands.md)
-03. [How to use grep](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/03_How_to_use_grep.md)
+1. [Installing WSL on Windows](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/01_Installing_WSL.md)
+2. [Installing packages](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/02_Installing_packages.md)
+3. [Introduction to Unix commands](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/03_Unix_system_commands.md)
+4. [How to use grep](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/04_How_to_use_grep.md)
 
 <!-- 
 05. [Piping and redirecting output in Unix](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/05_piping_and_redirecting_in_UNIX.md)
