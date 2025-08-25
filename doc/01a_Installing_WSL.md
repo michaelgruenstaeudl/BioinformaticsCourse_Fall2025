@@ -58,18 +58,3 @@ $ export LC_ALL=en_US.UTF-8
 # 4. Verify
 $ locale
 ```
-
-Installing additional tools on MacOS, using the brew package manager
-```bash
-# Installing the package manager 'brew':
-$ /bin/bash -c "$(curl -fsSL \
-	https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# Installing new command-line tools:
-$ brew install tre   # includes agrep
-
-$ brew search ncbi-entrez-direct
-$ brew install ...
-
-$ brew install sratoolkit
-```

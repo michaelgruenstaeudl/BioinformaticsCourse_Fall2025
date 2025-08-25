@@ -4,7 +4,8 @@ Collection of coding exercises from my bioinformatics course taught in fall seme
 ---
 
 ## Chapters
-01. [Installing WSL on Windows](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/01_Installing_WSL.md)
+01a. [Installing WSL on Windows](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/01a_Installing_WSL.md)
+01b. [Installing packages](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/01b_Installing_packages.md)
 02. [Introduction to Unix commands](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/02_Unix_system_commands.md)
 03. [How to use grep](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/03_How_to_use_grep.md)
 
