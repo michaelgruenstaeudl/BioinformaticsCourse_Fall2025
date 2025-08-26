@@ -8,6 +8,9 @@ Collection of coding exercises from my bioinformatics course taught in fall seme
 2. [Installing packages](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/02_Installing_packages.md)
 3. [Introduction to Unix commands](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/03_Unix_system_commands.md)
 4. [How to use grep](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/04_How_to_use_grep.md)
+5. [Approximate grepping on large genomic dataset](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/05_Approximate_grepping_on_large_dataset.md)
+6. [How to use BLAST](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/06_How_to_BLAST.md)
+
 
 <!-- 
 05. [Piping and redirecting output in Unix](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/05_piping_and_redirecting_in_UNIX.md)
