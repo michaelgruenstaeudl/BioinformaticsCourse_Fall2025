@@ -99,7 +99,7 @@ $ nano <file1>    # Editing a file but with more options
 # using the following two commands:
 
 $ i=NC_045512.2
-$ curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?\
+$ curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi? \
 	db=nucleotide&id=${i}&rettype=gb&retmode=txt" \
 	> $i.gbk
 

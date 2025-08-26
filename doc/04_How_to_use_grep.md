@@ -4,67 +4,89 @@
 grep    # Global search for Regular Expression and Print the results
         # i.e., printing lines that match patterns
 ```
-#### General usage
-```
-grep "PATTERN" <file_to_be_filtered>
-```
+## Simple operations with 'grep'
 
-
-#### Setting up test file
+### Introduction to grep
 ```
-cd ~
-echo "This is the first line." > file1.txt
-echo "This is the second line." >> file1.txt
-echo "This is the third line." >> file1.txt
-echo "And here is the fourth line." >> file1.txt
-echo "Fifth one and the end." >> file1.txt
+# General usage
+$ grep "PATTERN" <file_to_be_searched>
+
+# Example usage with options
+$ grep -i "PATTERN" <file_to_be_searched>
+
+# To make out life easier, let us define the input file as a variable
+$ INF=NC_045512.2.gbk
 ```
 
-#### Using grep on test file
+### Using grep on a GenBank formatted flatfile
 ```
-grep "line" file1.txt    # print all lines with keyword 'line'
+$ cat $INF       # Display the entire file
 
-grep --color "line" file1.txt    # print all lines with keyword 'line'
-                                 # while highlighting the keyword
-```
+$ grep "LOCUS" $INF              # print all lines containing 'LOCUS'
 
-#### Using grep with different options - part 1
-```
-grep -v "line" file1.txt    # print all lines without keyword 'line'
+$ grep --color "DEFINITION" $INF # same, with keyword highlighted
 
-grep -v "line" file1.txt | grep "here"  # print all lines with 
-                                        # keyword 'here' that 
-                                        # do not contain keyword 'line'
+$ grep -v "ACCESSION" $INF       # print lines without 'ACCESSION'
 
-grep 'line\|end' file1.txt  # print all lines with either keyword 
-                            # 'line' or keyword 'end'
-                            
-grep "^This" file1.txt    # print all lines that start 
-                          # with keyword 'This' (case-sensitive)
+$ grep 'FEATURES\|ORIGIN' $INF   # lines with 'FEATURES' or 'ORIGIN'
+
+$ grep "^ORIGIN" $INF            # lines starting with 'ORIGIN'
 ```
 
-#### Using grep with different options - part 2
+### Pipeling grep results
 ```
-grep -A1 "second" file1.txt   # print all lines with keyword 'second' and 
-                              # any line immediately following it
+# lines with 'DEFINITION' but not 'ACCESSION'
+$ grep -v "ACCESSION" $INF | grep "DEFINITION"
 
-grep -B2 "fourth" file1.txt  # print all lines with keyword 'fourth' and 
-                             # the two lines immediately before it
+$ grep "PUBMED" $INF | wc -l	# count all lines with 'PUBMED'
 ```
 
-#### Using grep with regular expressions
+### Grepping with context
 ```
-grep "This .* line" file1.txt  # print all lines that start 
-                               # with 'This' and end with 'line'
+$ grep -A2 "^DEFINITION" $INF	# the DEFINITION line + 2 following lines
 
-grep "This is the ..... line" file1.txt  # print all lines that 
-                                         # start with 'This is the',
-                                         # end with 'line', and has
-                                         # exactly five characters
-                                         # in between.
+$ grep -B3 "^FEATURES" $INF		# the FEATURES header + 3 preceding lines
 
-grep -o "f...t" file1.txt  # from all lines, print only the 5-character
-                           # word that starts with 'f' and ends with 't'
-                           
-grep -o ".* line\.$" file1.txt  # print all lines that end with 'line.'
+$ grep -B1 -A2 "ORGANISM" $INF	# ORGANISM line + 1 before, 2 after
+```
+
+### Grepping with regular expressions
+```
+$ grep "gene.*ORF" $INF      	# full lines containing 'gene' and later 'ORF'
+
+$ grep -o "/product=.*" $INF 	# print only everything after '/product='
+
+$ grep "/product=" $INF | sort -u 	# print only unique '/product=' lines
+
+$ grep "[3,5].UTR" $INF        	# any line containing 'gene' followed by numbers
+```
+
+### Exercise: Downloading additional GenBank records
+```
+# Download full genomes of 17 different SARS-CoV2 samples
+
+$ for i in MT079851.1 MZ472096.1 OK439973.1 MZ353007.1 MW194121.1 \
+MT412312.1 OU171384.2 OR477016.1 MZ544366.1 MW876953.1 OY715744.1 \
+LR992043.1 OX648098.1 OU801385.1 OX446419.1 MZ579386.1 OK546254.1;
+  do echo "Downloading $i"; 
+  curl -s  "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/ \
+  efetch.fcgi?db=nucleotide&id=${i}&rettype=gb&retmode=txt">$i.gbk;
+done
+
+# Note: No line breaks allowed in the curl command.
+```
+
+### Grepping across multiple files
+```
+# print all sequencing technologies used across the samples
+$ grep "Sequencing Technology" *.gbk
+
+# print all isolate information across the samples
+$ grep "\isolate=" *.gbk
+
+# print all cases where a journal with the title "Virology" has referenced that sequence
+$ grep "JOURNAL .*Virology" *.gbk
+
+# print all protein products that contain the keyword 'spike' across all samples
+$ grep -o "/product=.*spike.*" *.gbk
 ```
