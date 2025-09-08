@@ -68,45 +68,31 @@ AND 2020/01/01:2020/06/31[PDAT]
 gzip SARS-CoV-2_collected_genomes_2020H2.gbk
 ```
 
-### Confirming that the full file contains the correct number of records
-```
-# Let us uncompress the file to work on it
-gunzip SARS-CoV-2_collected_genomes_2020H2.gbk.gz
-
+### Confirming that full file contains correct number of records
+```bash
 # Let us verify that all 5,809 SARS-CoV-2 genomes are saved in the 
-# file 'SARS-CoV-2_collected_genomes_2020H2.gbk'
+# compressed file 'SARS-CoV-2_collected_genomes_2020H2.gbk.gz'
 
 # Checking for beginning of each file
-grep "^LOCUS" SARS-CoV-2_collected_genomes_2020H2.gbk | wc -l
+zgrep "^LOCUS" SARS-CoV-2_collected_genomes_2020H2.gbk.gz | wc -l
 
 # Checking for end of each file
-grep "^//" SARS-CoV-2_collected_genomes_2020H2.gbk | wc -l
+zgrep "^//" SARS-CoV-2_collected_genomes_2020H2.gbk.gz | wc -l
 ```
 
-### Splitting the full file into individual files
-```
-# Splitting 'SARS-CoV-2_collected_genomes_2020H2.gbk' based on pattern '^LOCUS'
-csplit -f gbkrecord -n 4 \
-  -z SARS-CoV-2_collected_genomes_2020H2.gbk /^LOCUS/ '{*}'\
-  > num_of_lines.txt
-
-# Note: The number of lines that each split-file has 
-# is recorded in file 'num_of_lines.txt'
-```
-
-### Conducting data mining on the complete dataset
+### Conducting data mining on complete dataset
 ```
 # Using grep to summarize what kind of sequencing technologies 
 # were used to produce these genome records
-grep -h "Sequencing Technology" gbkrecord* | \
+zgrep -h "Sequencing Technology" SARS-CoV-2_collected_genomes_2020H2.gbk.gz | \
 sort | uniq -c | sort -n
 
 # How many different spelling versions of 'Illumina' are there among
 # these 5,809 files?
-agrep -h -2 "Illumina" gbkrecord* | grep -o "Il......" | \
+zcat SARS-CoV-2_collected_genomes_2020H2.gbk.gz | agrep -h -2 | grep -o "Il......" | \
 sort | uniq -c
 
 # What is the distribution of countries that these genomes come from?
-grep -h "country=" gbkrecord* | grep -o '".*"' | \
+zgrep -h "geo_loc_name=" SARS-CoV-2_collected_genomes_2020H2.gbk.gz | grep -o '".*"' | \
 tr -d '"' | sort | uniq -c | sort -n
 ```
