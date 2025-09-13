@@ -10,7 +10,7 @@ Collection of coding exercises from my bioinformatics course taught in fall seme
 4. [How to use grep](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/04_How_to_use_grep.md)
 5. [Approximate grepping on large genomic dataset](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/05_Approximate_grepping_on_large_dataset.md)
 6. [How to use BLAST](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/06_How_to_BLAST.md)
-
+7. [Accessing GenBank via esearch](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/07_Accessing_GenBank_via_esearch.md)
 
 <!-- 
 05. [Piping and redirecting output in Unix](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/05_piping_and_redirecting_in_UNIX.md)
