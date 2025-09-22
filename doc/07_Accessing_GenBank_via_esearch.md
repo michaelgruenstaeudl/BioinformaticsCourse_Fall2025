@@ -31,6 +31,18 @@ brew install ncbi-entrez-direct
 # https://www.ncbi.nlm.nih.gov/books/NBK179288/#_chapter6_Getting_Started_
 ```
 
+#### If you receive the error 'curl: (35) OpenSSL/3.0.17 ...' when operating edirect
+```
+# Create a new conda environment
+conda create -n edirect_openssl1.1 perl openssl=1.1 curl
+# Activate it
+conda activate edirect_openssl1.1
+# Install edirect manually inside this environment
+sh -c "$(curl -fsSL https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh)"
+# Add to PATH
+export PATH=$HOME/edirect:$PATH
+```
+
 #### Defining the search query
 ```
 MYQUERY="Severe acute respiratory syndrome coronavirus 2[TITLE] \
