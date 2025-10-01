@@ -12,6 +12,7 @@ Collection of coding exercises from my bioinformatics course taught in fall seme
 6. [How to use BLAST](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/06_How_to_BLAST.md)
 7. [Accessing GenBank via esearch](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/07_Accessing_GenBank_via_esearch.md)
 8. [Data mining of GenBank using edirect tools](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/08_Data_mining_of_NCBI.md)
+9. [Working on the HPC cluster Beocat](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/09_Working_on_Beocat.md)
 
 
 <!-- 
