@@ -17,7 +17,7 @@ export PATH=$HOME/perl5/bin:$PATH
 source ~/.bashrc
 ```
 
-#### Download complete genome
+#### Download final genome and reference genomes
 ```
 # Download genome in FASTA and GenBank format
 efetch -db nuccore -id ${ACC_NUMBER} -format fasta \
@@ -26,8 +26,8 @@ efetch -db nuccore -id ${ACC_NUMBER} -format fasta \
 efetch -db nuccore -id ${ACC_NUMBER} -format gb \
   > complete_genome_${ACC_NUMBER}.gb
 
-# Example:
-ACC_NUMBER=MW057726
+esearch -db nucleotide -query "$RELATED_GENOMES" | 
+	efetch -format fasta -stop 5 > related_genomes.fasta
 ```
 
 #### Download short-read sequence data
@@ -47,9 +47,6 @@ fasterq-dump ${SRR_NUMBER} --split-files --threads 8 -O ./fastq_output
 gzip ./fastq_output/${SRR_NUMBER}*.fastq
 
 # Note: This may take an hour or two!
-
-# Example:
-SRR_NUMBER=SRR12532059
 ```
 
 ### Quality control of short-read sequence data
