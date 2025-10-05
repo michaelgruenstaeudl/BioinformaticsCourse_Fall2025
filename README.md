@@ -15,7 +15,7 @@ Collection of coding exercises from my bioinformatics course taught in fall seme
 09. [Working on the HPC cluster Beocat](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/09_Working_on_Beocat.md)
 10. [Downloading short-read sequence data](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/10_Downloading_ShortReadSequenceData.md)
 11. [Organellar genome assembly](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/11_Organellar_genome_assembly.md)
-
+12. [Cyanobacterial genome assembly](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/12_Cyanobacterial_genome_assembly.md)
 
 <!-- 
 13. [Analyzing gene expression in humans](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/12_RNA_seq_analysis.md)
