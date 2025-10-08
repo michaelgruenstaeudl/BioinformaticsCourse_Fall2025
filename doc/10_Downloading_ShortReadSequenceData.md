@@ -9,12 +9,14 @@ ssh username@headnode.beocat.ksu.edu
 conda install bioconda::entrez-direct
 
 # Installing some Perl dependencies on Beocat
-module load Perl
-module load Perl-bundle-CPAN
-cpanm --local-lib=~/perl5 Time::HiRes
-export PERL5LIB=$HOME/perl5/lib/perl5:$PERL5LIB
-export PATH=$HOME/perl5/bin:$PATH
-source ~/.bashrc
+conda install bioconda::perl-time-hires
+
+#module load Perl
+#module load Perl-bundle-CPAN
+#cpanm --local-lib=~/perl5 Time::HiRes
+#export PERL5LIB=$HOME/perl5/lib/perl5:$PERL5LIB
+#export PATH=$HOME/perl5/bin:$PATH
+#source ~/.bashrc
 ```
 
 #### Download final genome and reference genomes
