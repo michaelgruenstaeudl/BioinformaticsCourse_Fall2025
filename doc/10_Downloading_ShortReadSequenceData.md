@@ -8,9 +8,10 @@ ssh username@headnode.beocat.ksu.edu
 # Installing edirect on Beocat
 conda install bioconda::entrez-direct
 
-# Installing some Perl dependencies on Beocat
+# Installing a Perl dependency into bioconda environment
 conda install bioconda::perl-time-hires
 
+# Installing a Perl dependency into bioconda environment - legacy code (works but requires loading upon every login)
 #module load Perl
 #module load Perl-bundle-CPAN
 #cpanm --local-lib=~/perl5 Time::HiRes
