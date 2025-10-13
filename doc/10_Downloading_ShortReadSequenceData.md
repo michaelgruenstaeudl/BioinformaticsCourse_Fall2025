@@ -66,7 +66,7 @@ zcat $INF2 | grep "^@" | wc -l   # Will take 1-2 min!
 ```
 zcat $INF1 | head -n8
 echo ""
-zcat $INF1 | head -n8
+zcat $INF2 | head -n8
 ```
 
 #### Checking read lengths
