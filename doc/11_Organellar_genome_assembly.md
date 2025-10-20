@@ -64,16 +64,18 @@ grep "^>" SPAdes_results/contigs.fasta
 
 #### Installing and testing GetOrganelle
 ```
-# Installing GetOrganelle
-module unload Python  # Getorganelle needs its own version of Python
-conda create -n getorganelle_env -y
-conda install -n getorganelle_env -c conda-forge python=3.9 -y
-conda install -n getorganelle_env -c conda-forge requests
+# Installing GetOrganelle - Option 1
+module unload Python  # GetOrganelle needs its own version of Python
+conda create -n getorganelle_env -c conda-forge python=3.9 requests -y
 conda activate getorganelle_env
 conda install -c bioconda getorganelle -y
 
-# Testing if GetOrganelle works
+# Installing GetOrganelle - Option 2
+module unload Python  # GetOrganelle needs its own version of Python
+conda create -n getorganelle_env -c conda-forge -c bioconda python=3.10 getorganelle -y
 conda activate getorganelle_env
+
+# Testing if GetOrganelle works
 get_organelle_from_reads.py --help
 
 # Downloading GetOrganelle databases
