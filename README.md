@@ -17,7 +17,4 @@ Collection of coding exercises from my bioinformatics course taught in fall seme
 11. [Organellar genome assembly](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/11_Organellar_genome_assembly.md)
 12. [Cyanobacterial genome assembly](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/12_Cyanobacterial_genome_assembly.md)
 13. [HPC workload management via SLURM](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/13_HPC_Workload_Management.md)
-
-<!-- 
-13. [Analyzing gene expression in humans](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/12_RNA_seq_analysis.md)
- -->
+14. [Analyzing gene expression in humans](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/14_RNA-seq_analysis.md)
