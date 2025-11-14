@@ -95,3 +95,48 @@ zcat sampleA_R2.fastq.gz | grep "^@" | wc -l
 zcat sampleA_R1.fastq.gz | head -n 1800 | tail -n 50
 zcat sampleA_R2.fastq.gz | head -n 1800 | tail -n 50
 ```
+
+#### Step 4a. Ensure proper pairing with Trimmomatic
+
+```
+module load Trimmomatic
+
+INF1=sampleA_R1.fastq.gz
+INF2=sampleA_R2.fastq.gz
+java -jar $EBROOTTRIMMOMATIC/trimmomatic-0.39.jar PE \
+-threads 4 -phred33 $INF1 $INF2 \
+${INF1%.fastq.gz}_paired.fastq.gz ${INF1%.fastq.gz}_unpaired.fastq.gz \
+${INF2%.fastq.gz}_paired.fastq.gz ${INF2%.fastq.gz}_unpaired.fastq.gz \
+MINLEN:25
+```
+
+#### Step 4b. Trim reads and remove adapters with cutadapt
+
+##### Adapter sequences:
+```
+R1:  5'-AGATCGGAAGAGCACACGTCTGAACTCCAGTCA-3'
+R2:  5'-AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT-3'
+```
+
+##### Cutadapt commands:
+```
+module load cutadapt
+
+cutadapt -m 22 -O 4 -j 2 -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA \
+-o sampleA_R1_trimmed.fastq.gz sampleA_R1_paired.fastq.gz \
+1>cutadapt_sampleA_R1.log 2>&1 &
+
+cutadapt -m 22 -O 4 -j 2 -a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
+-o sampleA_R2_trimmed.fastq.gz sampleA_R2_paired.fastq.gz \
+1>cutadapt_sampleA_R2.log 2>&1 &
+```
+
+#### Step 4c. File hygiene
+```
+rm SRR106777??.lite.1_pass_?.fastq.gz
+
+rm sample?_R?_paired.fastq.gz
+
+rm sample?_R?_unpaired.fastq.gz
+```
+
