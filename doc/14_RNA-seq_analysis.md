@@ -140,3 +140,77 @@ rm sample?_R?_paired.fastq.gz
 rm sample?_R?_unpaired.fastq.gz
 ```
 
+#### Step 4d. Reduce number of input reads
+```
+## CURRENT READS
+zcat sampleA_R1_trimmed.fastq.gz | grep "^@" | wc -l
+zcat sampleA_R2_trimmed.fastq.gz | grep "^@" | wc -l
+
+## REDUCE TO 5 MILLION READS
+zcat sampleA_R1_trimmed.fastq.gz | head -n 20000000 | \
+gzip > sampleA_R1_trimmed_subset5M.fastq.gz &
+zcat sampleA_R1_trimmed_subset5M.fastq.gz | grep "^@" | wc -l
+
+zcat sampleA_R2_trimmed.fastq.gz | head -n 20000000 | \
+gzip > sampleA_R2_trimmed_subset5M.fastq.gz &
+zcat sampleA_R2_trimmed_subset5M.fastq.gz | grep "^@" | wc -l
+```
+
+
+#### Step 5b. Split human genome by chromosome
+```
+mkdir chromosomes
+
+csplit --digits=2 --prefix=chromosomes/GRCh38.p14.genome.chromosome \
+GRCh38.p14.genome.fa "/>chr/" "{*}"
+
+# Remove empty first split
+rm chromosomes/GRCh38.p14.genome.chromosome00
+
+# Rename chromosomes 23-25
+mv chromosomes/GRCh38.p14.genome.chromosome23 chromosomes/GRCh38.p14.genome.chromosomeX
+mv chromosomes/GRCh38.p14.genome.chromosome24 chromosomes/GRCh38.p14.genome.chromosomeY
+mv chromosomes/GRCh38.p14.genome.chromosome25 chromosomes/GRCh38.p14.genome.chromosomeMT
+```
+
+
+#### Step 5c. Extract genome annotations for specific chromosomes
+```
+grep "^chr8" gencode.v49.annotation.gtf \
+> gencode.v49.annotation_chr8.gtf
+```
+
+
+#### Step 5d. Building index for specific chromosome with STAR
+```
+module load STAR
+
+# Build index
+mkdir -p GRCh38_chr8_index
+STAR --runThreadN 2 \
+--runMode genomeGenerate \
+--genomeDir GRCh38_chr8_index \
+--genomeFastaFiles chromosomes/GRCh38.p14.genome.chromosome08 \
+--sjdbGTFfile gencode.v49.annotation_chr8.gtf \
+--genomeSAindexNbases 12  \
+--sjdbOverhang 149 --outFileNamePrefix chr8 \
+1>STAR_buildingIndex_runtime.log 2>&1 &
+```
+
+#### Step 5e. Map reads against specific chromosome with STAR
+```
+STAR --runThreadN 4 \
+--genomeDir GRCh38_chr8_index \
+--readFilesIn sampleA_R1_trimmed_subset5M.fastq.gz sampleA_R2_trimmed_subset5M.fastq.gz \
+--readFilesCommand zcat \
+--outSAMtype BAM SortedByCoordinate \
+--quantMode GeneCounts \
+--outFileNamePrefix GRCh38_chr8_mapping/sampleA_ \
+1>STAR_mapping_sampleA_runtime.log 2>&1 &
+```
+
+#### Step 5f. File hygiene
+```
+cp GRCh38_chr8_mapping/sampleA_Aligned.sortedByCoord.out.bam \
+GRCh38_chr8_mapping/sampleA_mapping.bam
+```
