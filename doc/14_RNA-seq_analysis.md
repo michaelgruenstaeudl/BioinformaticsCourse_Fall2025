@@ -214,3 +214,36 @@ STAR --runThreadN 4 \
 cp GRCh38_chr8_mapping/sampleA_Aligned.sortedByCoord.out.bam \
 GRCh38_chr8_mapping/sampleA_mapping.bam
 ```
+
+#### Step 6. Remove technical duplicates from mapping file
+```
+module load picard
+
+java -jar $EBROOTPICARD/picard.jar MarkDuplicates \
+I=GRCh38_chr8_mapping/sampleA_mapping.bam \
+O=GRCh38_chr8_mapping/sampleA_mapping_techDuplRemoved.bam \
+M=GRCh38_chr8_mapping/sampleA_marked_dupl_metrics.txt \
+REMOVE_DUPLICATES=true
+```
+
+#### Step 7a. Count unique reads per gene
+```
+module load Subread
+
+featureCounts -T 2 -s 2 -p \
+-a gencode.v49.annotation_chr8.gtf \
+-o GRCh38_chr8_sampleA_featCounts.txt \
+GRCh38_chr8_mapping/sampleA_mapping_techDuplRemoved.bam \
+1>featCounts_sampleA.log 2>&1 &
+```
+
+#### Step 7b. Report count for gene of interest
+```
+EnsemblID="ENSG00000104237"
+# All information
+grep $EnsemblID GRCh38_chr8_sampleA_featCounts.txt
+
+# Count of mapped reads
+grep $EnsemblID GRCh38_chr8_sampleA_featCounts.txt | \
+   awk -F'\t' '{print $NF}'
+```
