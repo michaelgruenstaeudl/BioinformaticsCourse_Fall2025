@@ -140,7 +140,7 @@ rm sample?_R?_paired.fastq.gz
 rm sample?_R?_unpaired.fastq.gz
 ```
 
-#### Step 4d. Reduce number of input reads
+#### Step 4d. Reduce number of input reads to 5 million per sample
 ```
 ## CURRENT READS
 zcat sampleA_R1_trimmed.fastq.gz | grep "^@" | wc -l
