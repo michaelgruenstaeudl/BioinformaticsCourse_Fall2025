@@ -1,5 +1,5 @@
-# Bioinformatics course
-Collection of coding exercises from my bioinformatics course taught in fall semester 2023 and fall semester 2025.
+# Course: Introduction to Bioinformatics
+Coding exercises from my introductory bioinformatics course taught in fall semester 2023 and fall semester 2025.
 
 ---
 
