@@ -1,7 +1,7 @@
 ### Downloading short-read sequence data
 
 #### Logging on to Beocat and installing edirect
-```
+```bash
 # Log on to Beocat
 ssh username@headnode.beocat.ksu.edu
 
@@ -21,7 +21,7 @@ conda install bioconda::perl-time-hires
 ```
 
 #### Download final genome and reference genomes
-```
+```bash
 # Download genome in FASTA and GenBank format
 efetch -db nuccore -id ${ACC_NUMBER} -format fasta \
   > complete_genome_${ACC_NUMBER}.fasta
@@ -34,7 +34,7 @@ esearch -db nucleotide -query "$RELATED_GENOMES" |
 ```
 
 #### Download short-read sequence data
-```
+```bash
 # Check if SRA Toolkit is available:
 module avail sra-toolkit
 module load SRA-Toolkit		# Notice the capitalization !
@@ -55,7 +55,7 @@ gzip ./fastq_output/${SRR_NUMBER}*.fastq
 ### Quality control of short-read sequence data
 
 #### Checking number of reads
-```
+```bash
 ls -al fastq_output/${SRR_NUMBER}_?.fastq.gz
 
 INF1=fastq_output/${SRR_NUMBER}_1.fastq.gz
@@ -66,14 +66,14 @@ zcat $INF2 | grep "^@" | wc -l   # Will take 1-2 min!
 ```
 
 #### Look inside a FASTQ file
-```
+```bash
 zcat $INF1 | head -n8
 echo ""
 zcat $INF2 | head -n8
 ```
 
 #### Checking read lengths
-```
+```bash
 zcat $INF1 | awk '{if(NR%4==2) print length($1)}' | \
 sort | uniq -c     # Will take 2-3 min!
 zcat $INF2 | awk '{if(NR%4==2) print length($1)}' | \
@@ -81,7 +81,7 @@ sort | uniq -c     # Will take 2-3 min!
 ```
 
 #### Reducing read numbers
-```
+```bash
 INFS1=${SRR_NUMBER}_small_1.fastq.gz
 INFS2=${SRR_NUMBER}_small_2.fastq.gz
 
@@ -93,7 +93,7 @@ zcat $INFS2 | grep "^@" | wc -l
 ```
 
 #### Checking read quality of FASTQ file
-```
+```bash
 module load FastQC
 mkdir -p fastqc_results
 fastqc -o fastqc_results $INFS1 $INFS2
@@ -103,7 +103,7 @@ multiqc fastqc_results -o multiqc_report
 ```
 
 #### Quality-filtering reads of FASTQ file
-```
+```bash
 module load cutadapt
 
 cutadapt -m 140 -q 30 \
