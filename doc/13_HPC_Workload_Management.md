@@ -1,7 +1,7 @@
 ### HPC Workload Management via SLURM
 
 #### SLURM Script: Header and Directives
-```
+```bash
 #!/bin/bash   # Use the Bash shell to run this script
 
 #SBATCH --mail-user=user@mail.fhsu.edu  # Email address for job updates
@@ -13,7 +13,7 @@
 ```
 
 #### SLURM Script: Software Setup and Command Execution
-```
+```bash
 # Load software module (ensures environment is set up correctly)
 module load SPAdes
 
@@ -29,7 +29,7 @@ spades.py --isolate \
 ```
 
 #### Complete SLURM Script Example
-```
+```bash
 #!/bin/bash
 #SBATCH --mail-user=user@mail.fhsu.edu
 #SBATCH --job-name=spades_assembly
@@ -47,7 +47,7 @@ spades.py --isolate -1 plastomeOnlyReads_R1.fastq \
 ```
 
 #### Submitting and Monitoring Runs via SLURM
-```
+```bash
 sbatch spades_plastome.sbatch  # submits the job
 
 squeue -u $USER                # shows pending/running 
@@ -62,7 +62,7 @@ cat slurm-3708305.out          # SLURM output provides regular
 ```
 
 #### Cancelling a Run Prematurely
-```
+```bash
 scancel 3708305                # cancels particular job 
                                # (using job ID)
 ```
