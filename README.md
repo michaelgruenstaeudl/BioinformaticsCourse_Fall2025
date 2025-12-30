@@ -22,7 +22,7 @@ Coding exercises from my introductory bioinformatics course taught in fall semes
 08. [Data mining of GenBank using edirect tools](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/08_Data_mining_of_NCBI.md)
 09. [Working on the HPC cluster Beocat](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/09_Working_on_Beocat.md)
 
-### Genome assembly
+### De novo genome assembly (bacterial and organellar)
 10. [Downloading short-read sequence data](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/10_Downloading_ShortReadSequenceData.md)
 11. [Organellar genome assembly](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/11_Organellar_genome_assembly.md)
 12. [Cyanobacterial genome assembly](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/12_Cyanobacterial_genome_assembly.md)
