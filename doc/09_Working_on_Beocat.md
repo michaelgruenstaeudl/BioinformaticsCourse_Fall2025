@@ -1,4 +1,4 @@
-### Access to Beocat
+### Access to HPC cluster Beocat
 
 #### Opening SSH connection to Beocat
 ```bash
