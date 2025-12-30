@@ -43,3 +43,16 @@ SELECT * FROM features
 WHERE featuretype != 'gene'
   AND featuretype != 'CDS';
 ```
+
+
+#### Performing specific selections
+```sql
+--Select all genes of specific genome region
+SELECT featuretype, start, end, attributes FROM features
+WHERE featuretype = 'gene'
+  AND start >= 10000
+  AND end   <= 30000
+ORDER BY start;
+
+
+```
