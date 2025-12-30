@@ -1,19 +1,25 @@
 ### Introduction to SQLite for Biologists
 
 #### Prerequisites
+Preparing the necessary software tools and annotated sequence data for working with SQL. Specifically, we will work with the curated genome annotation for the SARS-CoV-2 genome.
 1. Download the annotations of the [SARS-CoV-2 genome](https://www.ncbi.nlm.nih.gov/nuccore/NC_045512.2) from NCBI in GFF3 format
 2. Install the package `gffutils`to convert the GFF3 file to a database file and do the file conversion
+   
 ```bash
 pip install gffutils
 gffutils-cli create NC_045512.2.gff3
 ```
 
 #### Opening input files and start working with it
+Opening the newly created SQLite database that stores the genome annotations.
+
 ```bash
 sqlite3 NC_045512.2.gff3.db
 ```
 
 #### Exploring the dataset
+Introducing basic queries to inspect the structure and content of the annotation database
+
 ```sql
 --Print the attributes that the table 'features' contains
 PRAGMA table_info(features);
@@ -44,7 +50,9 @@ WHERE featuretype != 'gene'
   AND featuretype != 'CDS';
 ```
 
-#### Performing specific selections
+#### Performing simple selections
+Filtering/selecting genomic features based on their genomic coordinates and biological meaning
+
 ```sql
 --Select all genes of a specific genome region (i.e., the region between position 10,000 and 30,000)
 SELECT featuretype, start, end, attributes FROM features
@@ -61,27 +69,11 @@ SELECT
   json_extract(attributes, '$.gene[0]') AS gene_name
 FROM features
 WHERE featuretype = 'gene';
-
---Extract substrings following keyword 'a_string='
-/* Note:
-instr(X, Y): returns position where string Y starts inside X
-substr(X, start, length): returns substring of X
-*/
-SELECT
-  featuretype,
-  start,
-  end,
-  substr(
-    attributes,
-    instr(attributes, 'a_string=') + 8,
-    instr(substr(attributes, instr(attributes, 'a_string=') + 8), ';') - 1
-  ) AS my_substring
-FROM features
-WHERE attributes LIKE '%a_string=%'
-  AND featuretype = 'gene';
 ```
 
-#### Altering the table
+#### Altering a table / adding new column
+Extracting gene names from the annotation metadata and storing them in a dedicated column for easier access
+
 ```sql
 --Extract all gene names from attributes and add them as a new column
 
@@ -100,4 +92,25 @@ SET gene_name = json_extract(attributes, '$.gene[0]');
 SELECT featuretype, gene_name
 FROM features
 WHERE gene_name IS NOT NULL
+```
+
+#### Performing advanced selections
+Filtering/selecting biologically meaningful information embedded within free-text annotations
+
+```sql
+
+--Selects all features whose attribute item 'note' contains the phrase “produced by” and extracts the subsequent text into a new column
+/* Note:
+substr(X, start pos, length): returns substring of X, continues until end if length not specified
+instr(X, Y): returns position where string Y starts inside X
+*/
+SELECT
+  featuretype,
+  gene_name,
+  substr(
+    json_extract(attributes, '$.Note[0]'),
+    instr(json_extract(attributes, '$.Note[0]'), 'produced by') + 12
+  ) AS produced_by
+FROM features
+WHERE json_extract(attributes, '$.Note[0]') LIKE '%produced by%';
 ```
