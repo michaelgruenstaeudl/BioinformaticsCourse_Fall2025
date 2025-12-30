@@ -1,7 +1,7 @@
 ### Accessing sequence records via Entrez
 
 #### Entrez search interface - Example query 1
-```
+```bash
 Severe acute respiratory syndrome coronavirus 2[TITLE] \
 AND complete genome[TITLE] \
 AND 29500:30500[SLEN] \
@@ -9,7 +9,7 @@ AND 2020/01/01:2020/06/31[PDAT]
 ```
 
 #### Entrez search interface - Example query 2
-```
+```bash
 complete genome[TITLE]
 AND (chloroplast[TITLE] OR plastid[TITLE])
 AND 2000/01/01:2020/12/31[PDAT]
@@ -20,7 +20,7 @@ AND Magnoliopsida[ORGN]
 ```
 
 #### Installing Entrez Direct
-```
+```bash
 # Linux or emulated Linux
 apt install ncbi-entrez-direct
 
@@ -32,7 +32,7 @@ brew install ncbi-entrez-direct
 ```
 
 #### If you receive the error 'curl: (35) OpenSSL/3.0.17 ...' when operating edirect
-```
+```bash
 # Create a new conda environment
 conda create -n edirect_openssl1.1 perl openssl=1.1 curl
 # Activate it
@@ -44,7 +44,7 @@ export PATH=$HOME/edirect:$PATH
 ```
 
 #### Defining the search query
-```
+```bash
 MYQUERY="Severe acute respiratory syndrome coronavirus 2[TITLE] \
 AND complete genome[TITLE] \
 AND 29500:30500[SLEN] \
@@ -53,7 +53,7 @@ AND 2020/01/01:2020/06/31[PDAT]
 ```
 
 #### Conducting esearch and extracting XML output
-```
+```bash
 esearch -db nucleotide -query "$MYQUERY"
 
 esearch -db nucleotide -query "$MYQUERY" | \
@@ -61,14 +61,14 @@ xtract -pattern ENTREZ_DIRECT -element Count
 ```
 
 #### Tips & Tricks
-```
+```bash
 einfo -db nucleotide -fields
 
 efetch -format gb -stop 1
 ```
 
 #### Obtaining list of available feature keys
-```
+```bash
 # Let us download the document and then grep it!
 curl -s https://www.insdc.org/submitting-standards/feature-table/#7.2 > \
 feature-table.info
@@ -81,7 +81,7 @@ grep -v "<.*>" feature-table.info | grep -A6 "^Feature Key"
 ```
 
 #### Esearch using indexed field 'FKEY'
-```
+```bash
 # Searching for any complete bacterial genome published this year that
 # has a replication origin specified:
 
