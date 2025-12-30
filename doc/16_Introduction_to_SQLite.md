@@ -17,7 +17,7 @@ Opening the newly created SQLite database that stores the genome annotations.
 sqlite3 NC_045512.2.gff3.db
 ```
 
-#### Exploring the dataset
+#### Exploring the dataset - Part 1
 Introducing basic queries to inspect the structure and content of the annotation database
 
 ```sql
@@ -48,6 +48,47 @@ WHERE featuretype != 'gene';
 SELECT * FROM features
 WHERE featuretype != 'gene'
   AND featuretype != 'CDS';
+```
+
+#### Exploring the dataset - Part 2
+Introducing basic queries to count the number of all or specific features as well as group or order them
+
+```sql
+--Count the number of features and group by featuretype
+SELECT featuretype, COUNT(*) AS n
+FROM features
+GROUP BY featuretype
+ORDER BY n DESC;
+
+--Count the number of specific features and group by featuretype
+SELECT featuretype, COUNT(*) AS n
+FROM features
+WHERE featuretype = 'gene'
+   OR featuretype = 'CDS'
+GROUP BY featuretype
+ORDER BY n DESC;
+
+--Identify genes with more than one feature associated with it
+SELECT
+  json_extract(attributes, '$.gene[0]') AS gene,
+  COUNT(*) AS total_features_in_table
+FROM features
+WHERE json_extract(attributes, '$.gene[0]') IS NOT NULL
+GROUP BY gene
+ORDER BY total_features_in_table DESC;
+
+--For each gene, count the different feature classes and keep only those genes with at least one CDS
+SELECT
+  json_extract(attributes, '$.gene[0]') AS gene,
+  COUNT(*) AS total_features,
+  SUM(CASE WHEN featuretype = 'CDS'  THEN 1 ELSE 0 END) AS n_cds,
+  SUM(CASE WHEN featuretype = 'mRNA' THEN 1 ELSE 0 END) AS n_mrna,
+  SUM(CASE WHEN featuretype LIKE '%UTR%' THEN 1 ELSE 0 END) AS n_utr
+FROM features
+WHERE json_extract(attributes, '$.gene[0]') IS NOT NULL
+GROUP BY gene
+HAVING n_cds > 0
+ORDER BY n_cds DESC, total_features DESC;
 ```
 
 #### Performing simple selections
@@ -113,4 +154,24 @@ SELECT
   ) AS produced_by
 FROM features
 WHERE json_extract(attributes, '$.Note[0]') LIKE '%produced by%';
+```
+
+#### Joining features
+Adding new columns from a subset of the original data
+
+--For all features of type 'CDS', make a new column and add it ("join it") to the selected data under the column name 'synonym' as long as none of the attribute items are 'intron'
+```sql
+SELECT
+  f.start,
+  f.end,
+  f.strand,
+  json_extract(f.attributes, '$.gene[0]') AS gene,
+  f.featuretype AS original,
+  x.new_class   AS synonym
+FROM features AS f
+JOIN (
+  SELECT 'CDS' AS original_class, 'exon' AS new_class
+) AS x
+ON f.featuretype = x.original_class
+WHERE lower(f.attributes) NOT LIKE '%intron%';
 ```
