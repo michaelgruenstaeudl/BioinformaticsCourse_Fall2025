@@ -1,5 +1,5 @@
 #### Tools that make your life easier
-```
+```bash
 # Making life easier with 'esummary'
 # 'esummary' is the same as 'efetch -format docsum'
 
@@ -7,7 +7,7 @@ esearch -db nucleotide -query "$MYQUERY" | efetch -format docsum
 esearch -db nucleotide -query "$MYQUERY" | esummary
 ```
 
-```
+```bash
 # Making life easier with 'efilter'
 # 'efilter' provides additional filtering options (beyond what the query allows)
 
@@ -15,7 +15,7 @@ esearch -db nucleotide -query "$MYQUERY" |
 efilter -division bct -days 260
 ```
 
-```
+```bash
 # Making life easier with 'xtract'
 # Use xtract to parse out specific information from the XML output
 
@@ -27,7 +27,7 @@ xtract -pattern DocumentSummary -element Title
 
 
 #### Extracting and reusing id numbers
-```
+```bash
 esearch -db nucleotide -query "$MYQUERY" |
 efetch -format uid > uid_numbers.list
 
@@ -42,7 +42,7 @@ xtract -pattern DocumentSummary -element Title
 
 
 #### Extracting taxonomic information
-```
+```bash
 # You can query NCBI Taxonomy just like any other NCBI database
 
 esearch -db taxonomy -query "Limnothrix" |
@@ -53,7 +53,7 @@ xtract -pattern Taxon -element Lineage
 
 
 #### How to known which indexed field are available?
-```
+```bash
 # Use command:
 einfo -db database_name -fields
 
@@ -66,7 +66,7 @@ einfo -db taxonomy -fields
 
 
 #### Fundamental questions
-```
+```bash
 # What is the the longest and the shortest complete bacterial genome sequence ever published on GenBank? (Note: Test initially with 100 records.)
 
 MYQUERY="gbdiv_bct[PROP] AND complete genome[TITLE]"
@@ -77,7 +77,7 @@ sort -k1,1n
 ```
 
 
-```
+```bash
 # What is the most common host organism of all complete viral genome sequences ever published on GenBank? (Note: Test initially with 100 records.)
 
 MYQUERY="gbdiv_vrl[PROP] AND complete genome[TITLE] AND source[FKEY]"
@@ -91,7 +91,7 @@ efetch -format gb -stop 100 |
 ### Finding similar entries in other NCBI databases
 
 #### Which databases are there and how are they linked?
-```
+```bash
 # There are various databases accessible via edirect
 einfo -dbs
 
@@ -104,7 +104,7 @@ einfo -db sra -links
 
 
 #### Finding SRA entries with connections to nuccore
-```
+```bash
 # Aim: Finding short-read datasets stored on NCBI SRA that match genome sequences on NCBI Nucleotide.}
 # Critical aim for re-assembly of genomes!
 
@@ -119,7 +119,7 @@ elink -target nuccore
 
 
 #### Single elink connections do not produce hits
-```
+```bash
 # Evidence of links between 'biosample' and 'nuccore' for \textit{Limnothrix} cyanobacteria
 esearch -db biosample -query "Limnothrix[ORGN]" |
 elink -target nuccore | esummary | 
@@ -133,7 +133,7 @@ xtract -pattern DocumentSummary -element Title
 
 
 #### How to find SRA datasets that match GenBank genomes?
-```
+```bash
 # Possible solution: from nuccore via bioproject to SRA
 
 esearch -db nuccore -query "Limnothrix[ORGN] AND 100000:10000000[SLEN]" | 
@@ -144,7 +144,7 @@ xtract -pattern DocumentSummary -element Title -ACC @acc -block DocumentSummary 
 ```
 
 
-```
+```bash
 # Possible solution--inverse: from SRA via bioproject to nuccore
 
 esearch -db sra -query "Limnothrix[ORGN] AND (Nanopore [TITLE] OR Illumina [TITLE] OR WGS[TITLE] OR complete genome[TITLE])" | 
