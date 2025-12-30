@@ -1,7 +1,7 @@
 ### Cyanobacterial Genome Assembly (Hybrid Assembly)
 
 #### Installation of the necessary tools
-```
+```bash
 # Installation of filtlong
 cd ~
 mkdir -p git
@@ -19,7 +19,7 @@ mamba create -n bactopia -c conda-forge -c bioconda bactopia
 ```
 
 #### Filtering the sequence reads
-```
+```bash
 # Combining Illumina reads
 LOC_ILLUMINA_DAT1_R1=~/data/Limnothrix/Limnothrix_Illumina_Jan2025_run1_R1.fastq.gz  # Change!
 LOC_ILLUMINA_DAT1_R2=~/data/Limnothrix/Limnothrix_Illumina_Jan2025_run1_R2.fastq.gz  # Change!
@@ -43,7 +43,7 @@ java -jar $EBROOTTRIMMOMATIC/trimmomatic-0.39.jar PE -threads 8 -phred33 \
 rm Illumina_all_R1.fastq.gz Illumina_all_R2.fastq.gz
 ```
 
-```
+```bash
 # Combining Nanopore reads
 LOC_NANOPORE_DAT1=~/data/Limnothrix/Nanopore_2025_06_12__fastq_pass/  # Change!
 LOC_NANOPORE_DAT2=~/data/Limnothrix/Nanopore_2025_06_24__fastq_pass/  # Change!
@@ -61,7 +61,7 @@ rm Nanopore_all.fastq
 #### De Novo Assembly using Bactopia
 
 ##### Option that calls Unicycler to generate the assembly
-```
+```bash
 conda activate bactopia
 
 # Under this option, Bactopia creates a hybrid assembly using Unicycler to assemble the short reads first, then bridging gaps with long reads.
@@ -77,7 +77,7 @@ bactopia \
 ```
 
 ##### Option that calls Dragonflye to generate the assembly
-```
+```bash
 conda activate bactopia
 
 # Under this option, Bactopia creates a hybrid assembly using Dragonflye to assemble the long-reads first, then polishing the assembly with the short-reads.
