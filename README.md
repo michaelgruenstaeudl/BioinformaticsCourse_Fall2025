@@ -1,7 +1,6 @@
 # Course: Introduction to Bioinformatics
 
-Coding exercises from the introductory bioinformatics course taught by Michael Gruenstaeudl
-Taught in **Fall Semester 2023** and **Fall Semester 2025**
+Coding exercises from the introductory bioinformatics course taught by Michael Gruenstaeudl in **fall semester 2023** and **fall semester 2025**
 
 ---
 
