@@ -1,7 +1,7 @@
 ## Introduction to BLAST
 
 ### Installing BLAST and seqkit
-```
+```bash
 # On WSL / Linux:
 sudo apt install ncbi-blast+
 sudo apt install seqkit
@@ -13,7 +13,7 @@ brew install seqkit
 
 
 ### Extracting the spike glycoprotein from the SARS-CoV-2 genome
-```
+```bash
 # Step 1: Download the FASTA file of SARS-CoV-2 record 'NC_045512.2'
 
 # Step 2: Extract the spike glycoprotein from the FASTA 
@@ -32,7 +32,7 @@ cat spike_glycoprotein.fasta
 
 
 ### Using BLAST to analyze a SARS-CoV-2 genome fragment
-```
+```bash
 # Step 3: Run a basic BLAST search locally or remotely
 blastn -query spike_glycoprotein.fasta -db nt -remote \
   -outfmt '6 std stitle' \
@@ -49,7 +49,7 @@ blastn -query spike_glycoprotein.fasta -db nt -remote \
 
 
 ### Evaluating the BLAST results
-```
+```bash
 # Step 4: Inspect the results
 head BLAST_results.tsv
 # Displays first few hits: accession, description, alignment stats
@@ -65,7 +65,7 @@ awk '{print $2}' BLAST_results.tsv | head -3
 
 
 ### BLAST spike glycoprotein excluding coronaviruses
-```
+```bash
 # For coronaviruses ('Coronaviridae'), the NCBI taxid is 11118.
 
 blastn \
