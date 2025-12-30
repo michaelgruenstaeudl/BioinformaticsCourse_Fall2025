@@ -1,7 +1,7 @@
 ## Grep with approximate matching
 
 ### Introduction to agrep
-```
+```bash
 # Approximate text file filtering
 agrep    # like grep, just with the ability to conduct
          # approximate matching
@@ -12,7 +12,7 @@ agrep -# "PATTERN" <file_to_be_filtered>  # with '#' being the number
 ```
 
 ### Using agrep
-```
+```bash
 # Extracting all matches that contain the keyword "SARS-CoV-2" exactly
 agrep -0 "SARS-CoV-2" *.gbk   # is equal to: grep "SARS-CoV-2" *.gbk
 
@@ -26,7 +26,7 @@ agrep -5 "SARS-CoV-2" *.gbk | grep -v "SARS-CoV-2"
 ```
 
 ### Producing our first realistic genomic dataset
-```
+```bash
 # I am searching for *all* SARS-CoV-2 genomes that were submitted
 # to GenBank in the first half of 2020
 esearch -db nucleotide -query \
@@ -37,7 +37,7 @@ AND 2020/01/01:2020/06/31[PDAT]"
 ```
 
 ### If you have difficulties with edirect in 2025:
-```
+```bash
 # Create a new conda environment
 conda create -n edirect_openssl1.1 perl openssl=1.1 curl
 # Activate it
@@ -55,7 +55,7 @@ AND 2020/01/01:2020/06/31[PDAT]"
 ```
 
 ### Downloading a LARGE genomic dataset
-```
+```bash
 # Downloading all 5809 genome files and combining them into one file
 esearch -db nucleotide -query \
 "Severe acute respiratory syndrome coronavirus 2[TITLE] \
@@ -81,7 +81,7 @@ zgrep "^//" SARS-CoV-2_collected_genomes_2020H2.gbk.gz | wc -l
 ```
 
 ### Conducting data mining on complete dataset
-```
+```bash
 # Using grep to summarize what kind of sequencing technologies 
 # were used to produce these genome records
 zgrep -h "Sequencing Technology" SARS-CoV-2_collected_genomes_2020H2.gbk.gz | \
