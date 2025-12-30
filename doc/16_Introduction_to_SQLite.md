@@ -157,10 +157,10 @@ WHERE json_extract(attributes, '$.Note[0]') LIKE '%produced by%';
 ```
 
 #### Joining features
-Adding new columns from a subset of the original data
+Joining selected feature types to a small reclassification mapping while filtering the annotations
 
---For all features of type 'CDS', make a new column and add it ("join it") to the selected data under the column name 'synonym' as long as none of the attribute items are 'intron'
 ```sql
+--For all features of type 'CDS', make a new column and add it ("join it") to the selected data under the column name 'synonym' as long as none of the attribute items are 'intron'
 SELECT
   f.start,
   f.end,
