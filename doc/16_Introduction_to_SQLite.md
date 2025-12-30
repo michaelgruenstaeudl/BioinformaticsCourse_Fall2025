@@ -14,25 +14,32 @@ sqlite3 NC_045512.2.gff3.db
 ```
 
 #### Exploring the dataset
-```sqlite
---Printing the number of sequence features
+```sql
+--Print the attributes that the table 'features' contains
+PRAGMA table_info(features);
+
+--Print the number of features in table 'features'
 SELECT COUNT(*) FROM features;
 
---Printing all features that are genes
+--Print the first 10 features
+SELECT * FROM features
+LIMIT 10;
+
+--Print all features that are genes
+SELECT * FROM features
+WHERE featuretype = 'gene';
+
+--Print all features that are genes
 SELECT * FROM features
 WHERE featuretype = 'gene'
+   OR featuretype = 'CDS';
 
---Printing all features that are genes
+--Print all features that are NOT genes
 SELECT * FROM features
-WHERE featuretype = 'gene'
-   OR featuretype = 'CDS'
+WHERE featuretype != 'gene';
 
---Printing all features that are NOT genes
-SELECT * FROM features
-WHERE featuretype != 'gene'
-
---Printing all features that are NEITHER genes NOR CDS
+--Print all features that are NEITHER genes NOR CDS
 SELECT * FROM features
 WHERE featuretype != 'gene'
-  AND featuretype != 'CDS'
+  AND featuretype != 'CDS';
 ```
