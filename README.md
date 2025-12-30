@@ -33,3 +33,6 @@ Coding exercises from my introductory bioinformatics course taught in fall semes
 
 ### Python
 15. [Introduction to Python for Biologists](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/15_Introduction_to_Python.md)
+
+### SQLite
+16. [Introduction to SQLite for Biologists](https://github.com/michaelgruenstaeudl/BioinformaticsCourseGruenstaeudl/blob/main/doc/16_Introduction_to_SQLite.md)
