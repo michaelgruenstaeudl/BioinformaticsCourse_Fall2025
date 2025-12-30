@@ -1,7 +1,7 @@
 ### Access to Beocat
 
 #### Opening SSH connection to Beocat
-```
+```bash
 $ ssh username@headnode.beocat.ksu.edu
 Password: 
 ...
@@ -11,7 +11,7 @@ Password:
 ```
 
 #### Available Software
-```
+```bash
 module overview   # lists all available modules (summary form)
 
 module avail   # lists all available modules (detailed form)
@@ -20,7 +20,7 @@ module list   # lists all currently loaded modules
 ```
 
 #### Finding Specific Software
-```
+```bash
 module keyword a_string   # search modules containing \textit{string}
 
 module spider a_string   # list modules matching \textit{string}
@@ -29,7 +29,7 @@ module whatis module_name   # display information about a module
 ```
 
 #### Installing Miniconda
-```
+```bash
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
 
 bash ~/miniconda.sh -b -p $HOME/miniconda3
@@ -38,7 +38,7 @@ $HOME/miniconda3/bin/conda init bash
 ```
 
 #### Closing SSH connection to Beocat
-```
+```bash
 [username@selene ~]$ exit
 logout
 Connection to headnode.beocat.ksu.edu closed.
@@ -46,7 +46,7 @@ $
 ```
 
 #### Connecting to Beocat via sftp
-```
+```bash
 $ sftp username@headnode.beocat.ksu.edu
 Password:
 Connected to headnode.beocat.ksu.edu.
@@ -56,7 +56,7 @@ sftp>
 ```
 
 #### Local vs. remote sftp commands
-```
+```bash
 # Show working directory on remote system (Beocat)
 sftp> pwd
 # Show working directory on local computer (laptop)
@@ -74,7 +74,7 @@ sftp> lcd ~
 ```
 
 #### Local vs. remote sftp commands -- Cont'd
-```
+```bash
 # List files in current remote directory (Beocat)
 sftp> ls
 # List files in current local directory (laptop)
@@ -92,7 +92,7 @@ sftp> lrmdir temp99   # Note: invalid command, no 'lrmdir' in sftp
 ```
 
 #### Transferring files between local and remote
-```
+```bash
 # Upload file from local → remote
 sftp> lls
 spike_glycoprotein.fasta
