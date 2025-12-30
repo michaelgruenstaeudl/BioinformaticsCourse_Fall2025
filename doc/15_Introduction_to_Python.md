@@ -2,7 +2,7 @@
 
 #### Starting the Python IDE IDLE
 
-```
+```bash
 # Start IDLE from the command line
 idle3 &
 
@@ -12,7 +12,7 @@ python3 -m idlelib.idle
 
 #### Basics: Variables and Strings
 
-```
+```python
 # Assignment of string to variables
 species = "Homo sapiens"
 seq = "ATGCGTACGTTAG"
@@ -27,7 +27,7 @@ print(seq[-3:])   # Last codon
 
 #### Loops and Conditionals
 
-```
+```python
 seq = "ATGCGTACGTTAG"
 
 # Loop through seq
@@ -38,7 +38,7 @@ for base in seq:
 
 #### Functions in Python
 
-```
+```python
 def gc_content(seq):
     g = seq.count("G")
     c = seq.count("C")
@@ -53,7 +53,7 @@ print(gc_content(dna))
 
 #### Using Biopython: The Seq Object
 
-```
+```python
 from Bio.Seq import Seq
 my_seq = Seq("AGTACACTGGT")
 print(my_seq)
@@ -67,7 +67,7 @@ my_seq.translate()
 
 #### Using Biopython: The Seq Object (functions of Seq)
 
-```
+```python
 # ONLY FUNCTION NAMES
 dir(my_seq)
 
@@ -89,7 +89,7 @@ pprint(info)
 
 #### Reading FASTA Files
 
-```
+```python
 # DETERMINING WORKING DIRECTORY
 import os
 print(os.getcwd())
@@ -105,7 +105,7 @@ covid19_genome.seq
 
 #### Calculating GC Content with Biopython
 
-```
+```python
 from Bio.SeqUtils import gc_fraction
 
 gc = gc_fraction(covid19_genome.seq) * 100
@@ -116,7 +116,7 @@ print(covid19_genome.id, "GC content:", round(gc, 2))
 
 #### Back-translation of the Furin cleavage site
 
-```
+```python
 # STEP 1. BACK-TRANSLATION
 from Bio.Seq import Seq
 
@@ -133,7 +133,7 @@ print(site_motif_DNA)
 
 #### Test for presence of Furin cleavage site
 
-```
+```python
 # STEP 2. TEST FOR PRESENCE
 seq_str = str(covid19_genome.seq)
 
@@ -144,7 +144,7 @@ if site_motif_DNA in seq_str:
 
 #### Test for location of Furin cleavage site
 
-```
+```python
 # STEP 3. TEST FOR LOCATION
 pos = covid19_genome.seq.find(site_motif_DNA)
 
