@@ -1,7 +1,7 @@
 ### Introduction to organellar genome assembly
 
 #### Extracting organellar genome reads -- Mapping and extracting mapped reads
-```
+```bash
 # Load Bowtie2 and SAMtools
 module load Bowtie2
 module load SAMtools
@@ -39,7 +39,7 @@ samtools fastq \
 ```
 
 #### Quality check
-```
+```bash
 # Count mapped read pairs:
 grep "with itself and mate mapped" mapping_stats.txt | \
 awk '{print $1}'
@@ -51,7 +51,7 @@ grep "^@" mapped_R2.fastq | wc -l
 ```
 
 #### Plastid genome assembly with SPAdes
-```
+```bash
 # Start the assembly:
 module load SPAdes
 mkdir -p SPAdes_results
@@ -63,7 +63,7 @@ grep "^>" SPAdes_results/contigs.fasta
 ```
 
 #### Installing and testing GetOrganelle
-```
+```bash
 # Installing GetOrganelle - Option 1
 module unload Python  # GetOrganelle needs its own version of Python
 conda create -n getorganelle_env -c conda-forge python=3.9 requests -y
@@ -84,7 +84,7 @@ get_organelle_config.py -a all
 ```
 
 #### Plastid genome assembly with GetOrganelle
-```
+```bash
 # Run GetOrganelle on filtered reads
 get_organelle_from_reads.py \
   -1 mapped_R1.fastq -2 mapped_R2.fastq \
@@ -100,7 +100,7 @@ get_organelle_from_reads.py \
 ```
 
 #### Evaluate GetOrganelle output
-```
+```bash
 # Evaluate the output of the assembly:
 head -n100 getorganelle_results/extended_spades/contigs.fasta
 grep "^>" getorganelle_results/extended_spades/contigs.fasta
